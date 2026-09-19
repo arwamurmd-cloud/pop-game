@@ -45,7 +45,7 @@ const initialBalloons: BalloonData[] = [
   { id: 5, x: 84, y: 27, color: "rose", drift: 5.9 },
 ];
 
-const heartPositions = [
+const heartPositions: Array<[number, number]> = [
   [-72, -28], [-42, -68], [3, -82], [49, -56], [76, -13], [-64, 44], [58, 48], [4, 72],
 ];
 
@@ -106,7 +106,7 @@ function SisterGame() {
       id: nextId.current++,
       x: Math.min(91, Math.max(6, balloon.x + direction * (7 + Math.random() * 6))),
       y: Math.min(72, Math.max(15, balloon.y + (Math.random() * 18 - 9))),
-      color: colors[Math.floor(Math.random() * colors.length)],
+      color: colors[Math.floor(Math.random() * colors.length)] ?? "sage",
       drift: 4.5 + Math.random() * 2,
     });
     setBalloons((current) => [
