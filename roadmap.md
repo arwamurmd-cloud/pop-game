@@ -1,3 +1,3 @@
 # Roadmap
-- [ ] Build the three-screen interactive experience
-- [ ] Verify desktop interactions and visual polish
+- [x] Build the three-screen interactive experience
+- [x] Verify desktop interactions and visual polish
