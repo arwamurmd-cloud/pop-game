@@ -19,6 +19,9 @@
  */
 
 @theme inline {
+  --font-sans: "Manrope", sans-serif;
+  --font-display: "Cormorant Garamond", serif;
+  --font-hand: "Caveat", cursive;
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -59,29 +62,47 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+  --color-sage: var(--sage);
+  --color-sage-soft: var(--sage-soft);
+  --color-rose: var(--rose);
+  --color-blue-soft: var(--blue-soft);
+  --color-peach: var(--peach);
+  --color-cream-deep: var(--cream-deep);
+  --shadow-paper: var(--shadow-paper);
+  --shadow-love: var(--shadow-love);
+  --shadow-love-hover: var(--shadow-love-hover);
 }
 
 :root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.129 0.042 264.695);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.129 0.042 264.695);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.129 0.042 264.695);
-  --primary: oklch(0.208 0.042 265.755);
-  --primary-foreground: oklch(0.984 0.003 247.858);
-  --secondary: oklch(0.968 0.007 247.896);
-  --secondary-foreground: oklch(0.208 0.042 265.755);
-  --muted: oklch(0.968 0.007 247.896);
-  --muted-foreground: oklch(0.554 0.046 257.417);
-  --accent: oklch(0.968 0.007 247.896);
-  --accent-foreground: oklch(0.208 0.042 265.755);
+  --radius: 0.5rem;
+  --background: oklch(0.968 0.018 84);
+  --foreground: oklch(0.27 0.026 73);
+  --card: oklch(0.991 0.009 82);
+  --card-foreground: oklch(0.27 0.026 73);
+  --popover: oklch(0.991 0.009 82);
+  --popover-foreground: oklch(0.27 0.026 73);
+  --primary: oklch(0.49 0.065 145);
+  --primary-foreground: oklch(0.985 0.008 90);
+  --secondary: oklch(0.925 0.025 91);
+  --secondary-foreground: oklch(0.32 0.035 80);
+  --muted: oklch(0.936 0.018 87);
+  --muted-foreground: oklch(0.53 0.025 74);
+  --accent: oklch(0.83 0.05 28);
+  --accent-foreground: oklch(0.3 0.03 65);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(0.929 0.013 255.508);
-  --input: oklch(0.929 0.013 255.508);
-  --ring: oklch(0.704 0.04 256.788);
+  --border: oklch(0.84 0.027 83);
+  --input: oklch(0.84 0.027 83);
+  --ring: oklch(0.56 0.07 145);
+  --sage: oklch(0.72 0.06 145);
+  --sage-soft: oklch(0.86 0.035 145);
+  --rose: oklch(0.8 0.055 28);
+  --blue-soft: oklch(0.78 0.045 230);
+  --peach: oklch(0.84 0.065 55);
+  --cream-deep: oklch(0.89 0.035 88);
+  --shadow-paper: 0 24px 65px color-mix(in oklab, var(--foreground) 10%, transparent), 0 2px 8px color-mix(in oklab, var(--foreground) 5%, transparent);
+  --shadow-love: 0 10px 24px color-mix(in oklab, var(--primary) 25%, transparent);
+  --shadow-love-hover: 0 14px 30px color-mix(in oklab, var(--primary) 34%, transparent);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
@@ -140,5 +161,58 @@
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
+    font-family: var(--font-sans);
+    margin: 0;
+    overflow: hidden;
+  }
+
+  button { letter-spacing: 0; }
+}
+
+@layer components {
+  .paper-grain {
+    background-image: radial-gradient(color-mix(in oklab, var(--foreground) 7%, transparent) 0.55px, transparent 0.55px);
+    background-size: 6px 6px;
+  }
+
+  .balloon {
+    width: 5.5rem;
+    height: 6.8rem;
+    border-radius: 48% 48% 46% 46%;
+    box-shadow: inset -12px -14px 24px color-mix(in oklab, var(--foreground) 8%, transparent), inset 11px 9px 18px color-mix(in oklab, var(--primary-foreground) 42%, transparent), 0 14px 24px color-mix(in oklab, var(--foreground) 10%, transparent);
+    cursor: pointer;
+    position: relative;
+  }
+
+  .balloon::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -0.55rem;
+    width: 0;
+    height: 0;
+    transform: translateX(-50%);
+    border-left: 0.45rem solid transparent;
+    border-right: 0.45rem solid transparent;
+    border-bottom: 0.8rem solid currentColor;
+    opacity: 0.72;
+  }
+
+  .balloon::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: calc(100% + 0.15rem);
+    width: 1px;
+    height: 3.8rem;
+    background: color-mix(in oklab, var(--foreground) 26%, transparent);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
   }
 }
